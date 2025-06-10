@@ -1,0 +1,28 @@
+1- HTML Template (app/templates/modern.html):
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ data.name }} - Resume</title>
+    <link rel="stylesheet" href="modern.css">
+</head>
+<body>
+    <div class="resume">
+        <header>
+            <h1>{{ data.name }}</h1>
+            <p>{{ data.email }} | {{ data.phone }}</p>
+        </header>
+        
+        <section class="education">
+            <h2>Education</h2>
+            {% for edu in data.education %}
+            <div class="item">
+                <h3>{{ edu.institution }}</h3>
+                <p>{{ edu.degree }} ({{ edu.year }})</p>
+            </div>
+            {% endfor %}
+        </section>
+        
+        <!-- Add other sections similarly -->
+    </div>
+</body>
+</html>
