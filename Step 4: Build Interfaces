@@ -1,0 +1,23 @@
+# 1- CLI Interface (app/cli.py):
+import click
+from app.core.generator import ResumeGenerator
+from app.core.models import ResumeData
+
+@click.command()
+@click.option('--output', default='pdf', help='Output format (pdf/html/docx)')
+def build_resume(output):
+    """Interactive resume builder CLI"""
+    name = click.prompt("Full name")
+    email = click.prompt("Email")
+    phone = click.prompt("Phone")
+    
+    # Collect other details similarly
+    
+    data = ResumeData(name=name, email=email, phone=phone, ...)
+    generator = ResumeGenerator()
+    
+    if output == 'pdf':
+        pdf = generator.generate_pdf(data)
+        with open('resume.pdf', 'wb') as f:
+            f.write(pdf)
+    # Handle other formats
