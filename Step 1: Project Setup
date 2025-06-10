@@ -1,4 +1,4 @@
-1. Create project structure:
+# 1. Create project structure:
 resume-builder/
 │
 ├── app/
@@ -14,7 +14,7 @@ resume-builder/
 ├── README.md
 └── setup.py
 
-2. Set up virtual environment:
+# 2. Set up virtual environment:
 python -m venv venv
 source venv/bin/activate  # Linux/Mac
 venv\Scripts\activate    # Windows
