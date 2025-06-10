@@ -1,0 +1,48 @@
+1- Data Models (app/core/models.py):
+from dataclasses import dataclass
+from typing import List
+
+@dataclass
+class Education:
+    institution: str
+    degree: str
+    year: str
+
+@dataclass
+class Experience:
+    company: str
+    position: str
+    duration: str
+    description: str
+
+@dataclass
+class ResumeData:
+    name: str
+    email: str
+    phone: str
+    education: List[Education]
+    experience: List[Experience]
+    skills: List[str]
+
+2-Template Engine (app/core/generator.py):
+from jinja2 import Environment, FileSystemLoader
+import pdfkit
+from docx import Document
+
+class ResumeGenerator:
+    def __init__(self, template_dir="app/templates"):
+        self.env = Environment(loader=FileSystemLoader(template_dir))
+        
+    def generate_pdf(self, data, template_name="modern.html"):
+        template = self.env.get_template(template_name)
+        html = template.render(data=data)
+        return pdfkit.from_string(html, False)
+        
+    def generate_html(self, data, template_name="modern.html"):
+        template = self.env.get_template(template_name)
+        return template.render(data=data)
+        
+    def generate_docx(self, data):
+        doc = Document()
+        # Add implementation for DOCX generation
+        return doc
